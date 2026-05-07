@@ -38,9 +38,10 @@ export default antfu(
       'src/**/*.vue',
     ],
     rules: {
-      'vue/block-order': ['error', {
-        order: ['route', 'script', 'template', 'style'],
-      }],
+      // 'vue/block-order': ['error', {
+      //   order: ['route', 'script', 'template', 'style'],
+      // }],
+      'vue/block-order': 'off',
     },
   },
 )

@@ -1,3 +1,14 @@
+<template>
+  <EDesigner ref="designerRef" title="调查问卷" @save="handleSubmit">
+    <template #header-prefix>
+      <div class="header-back ml-10px flex cursor-pointer items-center rounded-4px px-10px py-4px text-18px font-500" @click="router.back()">
+        <SvgIcon name="ep:back" />
+        <span class="ml-4px text-14px">返回</span>
+      </div>
+    </template>
+  </EDesigner>
+</template>
+
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -268,17 +279,6 @@ function handleSubmit(e: PageSchema) {
   console.log(e)
 }
 </script>
-
-<template>
-  <EDesigner ref="designerRef" title="调查问卷" @save="handleSubmit">
-    <template #header-prefix>
-      <div class="header-back ml-10px flex cursor-pointer items-center rounded-4px px-10px py-4px text-18px font-500" @click="router.back()">
-        <SvgIcon name="ep:back" />
-        <span class="ml-4px text-14px">返回</span>
-      </div>
-    </template>
-  </EDesigner>
-</template>
 
 <style lang="scss" scoped>
 .header-back {

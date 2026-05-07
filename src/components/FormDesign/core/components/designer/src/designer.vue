@@ -1,3 +1,44 @@
+<template>
+  <div v-if="!pluginManager.initialized.value" class="elegant-loading-box">
+    <EAsyncLoader />
+  </div>
+  <div v-else>
+    <div class="elegant-designer-main">
+      <div class="elegant-header-container">
+        <slot name="header">
+          <EHeader v-if="!props.hiddenHeader" @preview="handlePreview" @save="handleSave">
+            <template #header>
+              <slot name="header-prefix" />
+            </template>
+
+            <template #prefix>
+              <slot name="header-prefix" />
+            </template>
+            <template #title>
+              <slot name="header-title" />
+            </template>
+            <template #right-prefix>
+              <slot name="header-right-prefix" />
+            </template>
+            <template #right-action>
+              <slot name="header-right-action" />
+            </template>
+            <template #right-suffix>
+              <slot name="header-right-suffix" />
+            </template>
+          </EHeader>
+        </slot>
+      </div>
+      <div class="elegant-split-view-container" :class="{ 'hidden-header': hiddenHeader }">
+        <EActionBar />
+        <EEditContainer />
+        <ERightSidebar />
+      </div>
+      <EPreview ref="previewRef" />
+    </div>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import {
   computed,
@@ -257,44 +298,3 @@ defineExpose({
   preview: handlePreview,
 })
 </script>
-
-<template>
-  <div v-if="!pluginManager.initialized.value" class="elegant-loading-box">
-    <EAsyncLoader />
-  </div>
-  <div v-else>
-    <div class="elegant-designer-main">
-      <div class="elegant-header-container">
-        <slot name="header">
-          <EHeader v-if="!props.hiddenHeader" @preview="handlePreview" @save="handleSave">
-            <template #header>
-              <slot name="header-prefix" />
-            </template>
-
-            <template #prefix>
-              <slot name="header-prefix" />
-            </template>
-            <template #title>
-              <slot name="header-title" />
-            </template>
-            <template #right-prefix>
-              <slot name="header-right-prefix" />
-            </template>
-            <template #right-action>
-              <slot name="header-right-action" />
-            </template>
-            <template #right-suffix>
-              <slot name="header-right-suffix" />
-            </template>
-          </EHeader>
-        </slot>
-      </div>
-      <div class="elegant-split-view-container" :class="{ 'hidden-header': hiddenHeader }">
-        <EActionBar />
-        <EEditContainer />
-        <ERightSidebar />
-      </div>
-      <EPreview ref="previewRef" />
-    </div>
-  </div>
-</template>
